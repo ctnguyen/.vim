@@ -1,0 +1,5 @@
+# ignore local directories
+autoload
+pack
+plugins
+tags
