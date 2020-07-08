@@ -40,10 +40,37 @@ scriptname
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Keys mapping
 """"""""""""""""""""""""""""""""""""""""""""""""
+" No use arrow keys
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+" Map quick esc
+if has('win32')
+  " On windows, Alt key can be used directly
+  inoremap <A-j> <Esc>
+  vnoremap <A-j> <Esc>
+else
+  " On Linux, Alt key send <Esc> prefix the char
+  inoremap <Esc>j <Esc>
+  vnoremap <Esc>j <Esc>
+endif
+
+" quick move up/down
+if has('win32')
+  " On windows, Alt key can be used directly
+  nnoremap <A-j> }
+  nnoremap <A-k> {
+  nnoremap <A-h> L
+  nnoremap <A-l> H
+else
+  " On Linux, Alt key send <Esc> prefix the char
+  nnoremap <Esc>j }
+  nnoremap <Esc>k {
+  nnoremap <Esc>h L
+  nnoremap <Esc>l H
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " View (themes)
