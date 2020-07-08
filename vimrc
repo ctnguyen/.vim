@@ -57,19 +57,15 @@ noremap <Right> <Nop>
 "   - Connection -> Data -> set Terminal-type string to "xterm-256color"
 "   - For shell/GitBash, check the environment variable TERM="xterm-256color"
 
-" Set slate theme if use vim on windows
-if has('win32')
-  colorscheme slate
-endif
-
-set number                 " Show line numbers
-set expandtab ts=4 sw=4    " Set tab to be 4 chars
-
+" Always use spaces instead of tab
+set expandtab ts=4 sw=4
 syntax on
+
 set hlsearch incsearch
 hi Search ctermbg=DarkRed ctermfg=Black 
 hi Visual ctermbg=DarkCyan ctermfg=Black
 set cursorline
+set number
 hi CursorLine ctermbg=234 cterm=NONE
 hi CursorLineNr ctermbg=234 cterm=NONE
 
@@ -77,6 +73,15 @@ hi CursorLineNr ctermbg=234 cterm=NONE
 let &t_SI="\e[5 q" "SI = INSERT mode        _ blink vertical bar
 let &t_SR="\e[3 q" "SR = REPLACE mode       _ blink underscore
 let &t_EI="\e[1 q" "EI = NORMAL mode (ELSE) _ blink block
+
+" Set slate theme if use vim on windows
+if has('win32')
+  if has("gui_running")
+    colorscheme evening
+  else
+    colorscheme slate
+  endif
+endif
 
 set switchbuf=usetab,newtab "https://stackoverflow.com/questions/102384/using-vims-tabs-like-buffers
 
@@ -113,7 +118,6 @@ Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""
