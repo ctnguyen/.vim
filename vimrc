@@ -19,8 +19,23 @@
 """"""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""
+" On windows, vim consider user VIM directory as $HOME/vimfiles
+" To make it work for both gvim, batch vim as git-bash vim, it will need to
+" create a symlink directory in windwos. Open cmd as administrator, run
+"      mklink /D "C:\path\to\home_dir\vimfiles" "C:\path\to\home_dir\.vim"
+
 " auto reload vimrc
-autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufwritepost .vimrc source ~/.vim/vimrc
+" print vim information
+echom "Vim environments"
+echom "."
+echom "      $HOME="$HOME
+echom "       $VIM="$VIM
+echom "$VIMRUNTIME="$VIMRUNTIME
+echom "   $MYVIMRC="$MYVIMRC
+echom "."
+echom "Vim loading ..."
+scriptname
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Keys mapping
@@ -42,8 +57,9 @@ noremap <Right> <Nop>
 "   - Connection -> Data -> set Terminal-type string to "xterm-256color"
 "   - For shell/GitBash, check the environment variable TERM="xterm-256color"
 
-if &term == "builtin_gui"
-    colorscheme slate
+" Set slate theme if use vim on windows
+if has('win32')
+  colorscheme slate
 endif
 
 set number                 " Show line numbers
