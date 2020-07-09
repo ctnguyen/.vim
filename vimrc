@@ -23,19 +23,19 @@
 " To make it work for both gvim, batch vim as git-bash vim, it will need to
 " create a symlink directory in windwos. Open cmd as administrator, run
 "      mklink /D "C:\path\to\home_dir\vimfiles" "C:\path\to\home_dir\.vim"
+"
+" print vim information. :echo vimenv to see all information here
+let vimenv="Vim environments\n"
+let vimenv=join([vimenv,join(["      $HOME",$HOME      ],"=")],"\n")
+let vimenv=join([vimenv,join(["       $VIM",$VIM       ],"=")],"\n")
+let vimenv=join([vimenv,join(["$VIMRUNTIME",$VIMRUNTIME],"=")],"\n")
+let vimenv=join([vimenv,join(["   $MYVIMRC",$MYVIMRC   ],"=")],"\n")
+let vimenv=join([vimenv,"loading scripts", "To see later. Now use :scriptnames"],"\n\n")
+" :scriptnames to see all loaded scripts
 
 " auto reload vimrc
 autocmd! bufwritepost .vimrc source ~/.vim/vimrc
-" print vim information
-echom "Vim environments"
-echom "."
-echom "      $HOME="$HOME
-echom "       $VIM="$VIM
-echom "$VIMRUNTIME="$VIMRUNTIME
-echom "   $MYVIMRC="$MYVIMRC
-echom "."
-echom "Vim loading ..."
-scriptname
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Keys mapping
