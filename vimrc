@@ -155,7 +155,13 @@ set switchbuf=usetab,newtab "https://stackoverflow.com/questions/102384/using-vi
 
 " NERDTree : easy directory explorer
 "    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
-map <C-n> :NERDTreeToggle<CR>
+" quick toogle NERDTree
+if has('win32')
+  noremap <A-n> :NERDTreeToggle<CR>
+else
+  noremap <Esc>n :NERDTreeToggle<CR>
+endif
+
 " lightline : nice statusline and tabline
 "    git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q
 set laststatus=2
