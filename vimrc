@@ -6,9 +6,9 @@
 "
 " TOC
 "   - General
-"   - Keys mapping
-"   - View (themes)
-"   - Packages and Plugins
+"   - Keys_mapping
+"   - View_(themes)
+"   - Packages_and_Plugins
 "
 " TODO :
 "   - Look at various vimrc on github, net to improve
@@ -38,7 +38,7 @@ autocmd! bufwritepost .vimrc source ~/.vim/vimrc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""
-" Keys mapping
+" Keys_mapping
 """"""""""""""""""""""""""""""""""""""""""""""""
 " No use arrow keys
 noremap <Up> <Nop>
@@ -46,34 +46,35 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-" Map quick esc
+" Map alt key have a little issue on Linux as it prepend <Esc>
+" to the {char}. see :h :map-alt-keys and google to fix this
+
+" Map quick esc and command mode
 if has('win32')
-  " On windows, Alt key can be used directly
-  inoremap <A-j> <Esc>
-  vnoremap <A-j> <Esc>
+  inoremap <A-s> <Esc>
+  vnoremap <A-s> <Esc>
+  nnoremap <A-d> :
 else
-  " On Linux, Alt key send <Esc> prefix the char
-  inoremap <Esc>j <Esc>
-  vnoremap <Esc>j <Esc>
+  inoremap <Esc>s <Esc>
+  vnoremap <Esc>s <Esc>
+  nnoremap <Esc>s <Nop>
+  nnoremap <Esc>d :
+  vnoremap <Esc>d :
 endif
 
 " quick move up/down
 if has('win32')
-  " On windows, Alt key can be used directly
   nnoremap <A-j> }
   nnoremap <A-k> {
-  nnoremap <A-h> L
-  nnoremap <A-l> H
 else
-  " On Linux, Alt key send <Esc> prefix the char
   nnoremap <Esc>j }
   nnoremap <Esc>k {
-  nnoremap <Esc>h L
-  nnoremap <Esc>l H
+  vnoremap <Esc>j }
+  vnoremap <Esc>k {
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""
-" View (themes)
+" View_(themes)
 """"""""""""""""""""""""""""""""""""""""""""""""
 " To know which terminal vim is runing, command :echo &term
 " On windows batch, its win32, on gvim, it's builtin_gui. On linux, it's
@@ -114,8 +115,10 @@ set switchbuf=usetab,newtab "https://stackoverflow.com/questions/102384/using-vi
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""
-" Packages
+" Packages_and_Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""
+"""" Native packages """""""""
+
 " NERDTree : easy directory explorer
 "    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 map <C-n> :NERDTreeToggle<CR>
@@ -123,9 +126,8 @@ map <C-n> :NERDTreeToggle<CR>
 "    git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q
 set laststatus=2
 
-""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
-""""""""""""""""""""""""""""""""""""""""""""""""
+"""" Plugins """""""""""""""""
+
 " vim-plug : plugin manager
 "    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 " Then add plugin by 
