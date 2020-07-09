@@ -47,65 +47,56 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 " Map alt key have a little issue on Linux as it prepend <Esc>
-" to the {char}. see :h :map-alt-keys and google to fix this
-" TO DO : it is painful to handle both key map set like this
-"         Find a way to make it simpler
+" to the {char}. see :h :map-alt-keys and google to see the issue
+" Approach to fix it here is to map alt key from windows to prepend
+" <Esc> to the char so it behave similar to linux
+if has('win32')
+  map <A-h> <Esc>h
+  map <A-j> <Esc>j
+  map <A-k> <Esc>k
+  map <A-l> <Esc>l
+  map <A-s> <Esc>s
+  map <A-d> <Esc>d
+  map <A-D> <Esc>D
+  map <A-n> <Esc>n
+
+  imap <A-s> <Esc>s
+
+  cmap <A-h> <Esc>h
+  cmap <A-l> <Esc>l
+  cmap <A-s> <Esc>s
+  cmap <A-d> <Esc>d
+  cmap <A-D> <Esc>D
+  cmap <A-n> <Esc>n
+endif
 
 " Map quick esc
-if has('win32')
-  inoremap <A-s> <Esc>
-  vnoremap <A-s> <Esc>
-  cnoremap <A-s> <Esc>
-  nnoremap <A-d> :
-else
-  inoremap <Esc>s <Esc>
-  vnoremap <Esc>s <Esc>
-  cnoremap <Esc>s <Esc>
-  nnoremap <Esc>s <Nop>
-  nnoremap <Esc>d :
-  vnoremap <Esc>d :
-endif
+inoremap <Esc>s <Esc>
+vnoremap <Esc>s <Esc>
+cnoremap <Esc>s <Esc>
+nnoremap <Esc>s <Nop>
+nnoremap <Esc>d :
+vnoremap <Esc>d :
 
 " quick move up/down in normal and visual mode
-if has('win32')
-  nnoremap <A-j> }
-  nnoremap <A-k> {
-  vnoremap <A-j> }
-  vnoremap <A-k> {
-else
-  nnoremap <Esc>j }
-  nnoremap <Esc>k {
-  vnoremap <Esc>j }
-  vnoremap <Esc>k {
-endif
+nnoremap <Esc>j }
+nnoremap <Esc>k {
+vnoremap <Esc>j }
+vnoremap <Esc>k {
 
 " quick move left/right in normal, visual and command line mode
 nnoremap E b
 vnoremap E b
-if has('win32')
-  nnoremap <A-h> B
-  nnoremap <A-l> W
-  vnoremap <A-h> B
-  vnoremap <A-l> W
-  cnoremap <A-h> <C-Left>
-  cnoremap <A-l> <C-Right>
-else
-  nnoremap <Esc>h B
-  nnoremap <Esc>l W
-  vnoremap <Esc>h B
-  vnoremap <Esc>l W
-  cnoremap <Esc>h <C-Left>
-  cnoremap <Esc>l <C-Right>
-endif
+nnoremap <Esc>h B
+nnoremap <Esc>l W
+vnoremap <Esc>h B
+vnoremap <Esc>l W
+cnoremap <Esc>h <C-Left>
+cnoremap <Esc>l <C-Right>
 
 " quick move up/down in command line mode
-if has('win32')
-  cnoremap <A-d> <Up>
-  cnoremap <A-D> <Down>
-else
-  cnoremap <Esc>d <Up>
-  cnoremap <Esc>D <Down>
-endif
+cnoremap <Esc>d <Up>
+cnoremap <Esc>D <Down>
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " View_(themes)
@@ -156,11 +147,7 @@ set switchbuf=usetab,newtab "https://stackoverflow.com/questions/102384/using-vi
 " NERDTree : easy directory explorer
 "    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 " quick toogle NERDTree
-if has('win32')
-  noremap <A-n> :NERDTreeToggle<CR>
-else
-  noremap <Esc>n :NERDTreeToggle<CR>
-endif
+noremap <Esc>n :NERDTreeToggle<CR>
 
 " lightline : nice statusline and tabline
 "    git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q
