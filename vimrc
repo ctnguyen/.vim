@@ -48,29 +48,63 @@ noremap <Right> <Nop>
 
 " Map alt key have a little issue on Linux as it prepend <Esc>
 " to the {char}. see :h :map-alt-keys and google to fix this
+" TO DO : it is painful to handle both key map set like this
+"         Find a way to make it simpler
 
-" Map quick esc and command mode
+" Map quick esc
 if has('win32')
   inoremap <A-s> <Esc>
   vnoremap <A-s> <Esc>
+  cnoremap <A-s> <Esc>
   nnoremap <A-d> :
 else
   inoremap <Esc>s <Esc>
   vnoremap <Esc>s <Esc>
+  cnoremap <Esc>s <Esc>
   nnoremap <Esc>s <Nop>
   nnoremap <Esc>d :
   vnoremap <Esc>d :
 endif
 
-" quick move up/down
+" quick move up/down in normal and visual mode
 if has('win32')
   nnoremap <A-j> }
   nnoremap <A-k> {
+  vnoremap <A-j> }
+  vnoremap <A-k> {
 else
   nnoremap <Esc>j }
   nnoremap <Esc>k {
   vnoremap <Esc>j }
   vnoremap <Esc>k {
+endif
+
+" quick move left/right in normal, visual and command line mode
+nnoremap E b
+vnoremap E b
+if has('win32')
+  nnoremap <A-h> B
+  nnoremap <A-l> W
+  vnoremap <A-h> B
+  vnoremap <A-l> W
+  cnoremap <A-h> <C-Left>
+  cnoremap <A-l> <C-Right>
+else
+  nnoremap <Esc>h B
+  nnoremap <Esc>l W
+  vnoremap <Esc>h B
+  vnoremap <Esc>l W
+  cnoremap <Esc>h <C-Left>
+  cnoremap <Esc>l <C-Right>
+endif
+
+" quick move up/down in command line mode
+if has('win32')
+  cnoremap <A-d> <Up>
+  cnoremap <A-D> <Down>
+else
+  cnoremap <Esc>d <Up>
+  cnoremap <Esc>D <Down>
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""
