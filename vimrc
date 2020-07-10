@@ -195,10 +195,14 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""
 " tags
 """"""""""""""""""""""""""""""""""""""""""""""""
-"ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ -f /home/chi/.vim/tags/boost_1_72_0 /home/chi/DevTools/boost_1_72_0"
-"ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ -f /home/chi/.vim/tags/sv /home/chi/development/sv"
-"ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ -f /home/chi/.vim/tags/bscrypt /home/chi/development/bscrypt"
-set tags+=~/.vim/tags/boost_1_72_0
-set tags+=~/.vim/tags/sv
-set tags+=~/.vim/tags/bscrypt
+" Use ctags to generate tag files in $HOME/.vim/tags directory
+"    ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ -f /path/to/.vim/tags/boost_1_72_0.tag /path/to/DevTools/boost_1_72_0/boost
+
+" Not using relative path in *.tag files
 set notagrelative
+
+" Load *.tag files in $HOME/.vim/tags directory
+let tag_files=split(globpath('~/.vim/tags','*.tag'), '\n')
+for f in tag_files
+  execute "set tags+=" . f
+endfor
