@@ -133,13 +133,15 @@ noremap <Esc>r "
 
 " Always use spaces instead of tab
 set expandtab ts=4 sw=4
+" Highlight syntax
 syntax on
+" Set hybrid numbers column. To deactivate relative number :set nornu
+set number relativenumber
 
 set hlsearch incsearch
 hi Search ctermbg=DarkRed ctermfg=Black 
 hi Visual ctermbg=DarkCyan ctermfg=Black
 set cursorline
-set number
 hi CursorLine ctermbg=234 cterm=NONE
 hi CursorLineNr ctermbg=234 cterm=NONE
 
