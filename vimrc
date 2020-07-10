@@ -131,28 +131,30 @@ noremap <Esc>r "
 "   - Connection -> Data -> set Terminal-type string to "xterm-256color"
 "   - For shell/GitBash, check the environment variable TERM="xterm-256color"
 
-colorscheme desert
+function! ResetTheme()
+    colorscheme desert
 
-" Always use spaces instead of tab
-set expandtab ts=4 sw=4
-" Highlight syntax
-syntax on
-" Set hybrid numbers column. To deactivate relative number :set nornu
-set number relativenumber
+    " Always use spaces instead of tab
+    set expandtab ts=4 sw=4
+    " Highlight syntax
+    syntax on
+    " Set hybrid numbers column. To deactivate relative number :set nornu
+    set number relativenumber
 
-set hlsearch incsearch
-set cursorline
-hi Search ctermbg=DarkRed ctermfg=Black 
-hi Visual ctermbg=DarkCyan ctermfg=Black
-hi CursorLine cterm=NONE ctermbg=DarkBlue
-hi CursorLineNr cterm=NONE ctermbg=DarkBlue
+    set hlsearch incsearch
+    set cursorline
+    hi Search ctermbg=LightYellow ctermfg=DarkRed
+    hi Visual ctermbg=DarkGray
+    hi CursorLine cterm=NONE ctermbg=DarkBlue
+    hi CursorLineNr cterm=NONE ctermbg=DarkBlue
 
-" Cursor shape : https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
-let &t_SI="\e[5 q" "SI = INSERT mode        _ blink vertical bar
-let &t_SR="\e[3 q" "SR = REPLACE mode       _ blink underscore
-let &t_EI="\e[1 q" "EI = NORMAL mode (ELSE) _ blink block
+    " Cursor shape : https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
+    let &t_SI="\e[5 q" "SI = INSERT mode        _ blink vertical bar
+    let &t_SR="\e[3 q" "SR = REPLACE mode       _ blink underscore
+    let &t_EI="\e[1 q" "EI = NORMAL mode (ELSE) _ blink block
+endfunction
 
-
+call ResetTheme()
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Packages_and_Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""
