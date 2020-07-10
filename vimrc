@@ -6,6 +6,7 @@
 "
 " TOC
 "   - General
+"   - Tab_management
 "   - Keys_mapping
 "   - View_(themes)
 "   - Packages_and_Plugins
@@ -38,6 +39,17 @@ autocmd! bufwritepost .vimrc source ~/.vim/vimrc
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""
+" Tab_management
+""""""""""""""""""""""""""""""""""""""""""""""""
+"https://stackoverflow.com/questions/102384/using-vims-tabs-like-buffers
+set switchbuf=usetab,newtab
+
+" Switch tab
+nnoremap th gT
+nnoremap tl gt
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""
 " Keys_mapping
 """"""""""""""""""""""""""""""""""""""""""""""""
 " No use arrow keys
@@ -50,6 +62,7 @@ noremap <Right> <Nop>
 " to the {char}. see :h :map-alt-keys and google to see the issue
 " Approach to fix it here is to map alt key from windows to prepend
 " <Esc> to the char so it behave similar to linux
+" From below, all alt-{char} are map to <Esc>{char}
 if has('win32')
   map <A-h> <Esc>h
   map <A-j> <Esc>j
@@ -59,8 +72,10 @@ if has('win32')
   map <A-d> <Esc>d
   map <A-D> <Esc>D
   map <A-n> <Esc>n
+  map <A-r> <Esc>r
 
   imap <A-s> <Esc>s
+  imap <A-r> <Esc>r
 
   cmap <A-h> <Esc>h
   cmap <A-l> <Esc>l
@@ -68,6 +83,7 @@ if has('win32')
   cmap <A-d> <Esc>d
   cmap <A-D> <Esc>D
   cmap <A-n> <Esc>n
+  cmap <A-r> <Esc>r
 endif
 
 " Map quick esc
@@ -97,6 +113,11 @@ cnoremap <Esc>l <C-Right>
 " quick move up/down in command line mode
 cnoremap <Esc>d <Up>
 cnoremap <Esc>D <Down>
+
+" quick register
+cnoremap <Esc>r <C-r>
+inoremap <Esc>r <C-r>
+noremap <Esc>r "
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " View_(themes)
@@ -135,9 +156,6 @@ if has('win32')
     colorscheme slate
   endif
 endif
-
-set switchbuf=usetab,newtab "https://stackoverflow.com/questions/102384/using-vims-tabs-like-buffers
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Packages_and_Plugins
