@@ -7,9 +7,9 @@
 " TOC
 "   - General
 "   - Tab_management
-"   - Keys_mapping
 "   - View_(themes)
 "   - Packages_and_Plugins
+"   - Keys_mapping
 "
 " TODO :
 "   - Look at various vimrc on github, net to improve
@@ -48,91 +48,6 @@ set switchbuf=usetab,newtab
 nnoremap th gT
 nnoremap tl gt
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""
-" Keys_mapping
-""""""""""""""""""""""""""""""""""""""""""""""""
-" No use arrow keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-
-" Map alt key have a little issue on Linux as it prepend <Esc>
-" to the {char}. see :h :map-alt-keys and google to see the issue
-" Approach to fix it here is to map alt key from windows to prepend
-" <Esc> to the char so it behave similar to linux
-" From below, all alt-{char} are map to <Esc>{char}
-if has('win32')
-  map <A-h> <Esc>h
-  map <A-j> <Esc>j
-  map <A-k> <Esc>k
-  map <A-l> <Esc>l
-  map <A-s> <Esc>s
-  map <A-d> <Esc>d
-  map <A-D> <Esc>D
-  map <A-n> <Esc>n
-  map <A-r> <Esc>r
-
-  imap <A-s> <Esc>s
-  imap <A-r> <Esc>r
-
-  cmap <A-h> <Esc>h
-  cmap <A-l> <Esc>l
-  cmap <A-s> <Esc>s
-  cmap <A-d> <Esc>d
-  cmap <A-D> <Esc>D
-  cmap <A-n> <Esc>n
-  cmap <A-r> <Esc>r
-endif
-
-" Map quick esc
-inoremap <Esc>s <Esc>
-vnoremap <Esc>s <Esc>
-cnoremap <Esc>s <Esc>
-nnoremap <Esc>s <Nop>
-nnoremap <Esc>d :
-vnoremap <Esc>d :
-
-" quick move up/down in normal and visual mode
-nnoremap <Esc>j }
-nnoremap <Esc>k {
-vnoremap <Esc>j }
-vnoremap <Esc>k {
-
-" quick move left/right in normal, visual and command line mode
-nnoremap E b
-vnoremap E b
-nnoremap <Esc>h B
-nnoremap <Esc>l W
-vnoremap <Esc>h B
-vnoremap <Esc>l W
-cnoremap <Esc>h <C-Left>
-cnoremap <Esc>l <C-Right>
-
-" quick move up/down in command line mode
-cnoremap <Esc>d <Up>
-cnoremap <Esc>D <Down>
-
-" quick register
-cnoremap <Esc>r <C-r>
-inoremap <Esc>r <C-r>
-noremap <Esc>r "
-
-" switch global/local map by switching uppercase/lowercase.
-" Except the letter 'm' will be kept.
-" ma --> mA ; 'a -->'A ; `a -->`A
-" mm --> mm ; 'm -->'m ; `m -->`m (letter 'm' does not change)
-for c in ['a','b','c','d','e','f','g','h','i','j','k','l','n','o','p','q','r','s','t','u','v','w','x','y','z']
-  execute "nnoremap m".c "m".toupper(c)
-  execute "nnoremap '".c "'".toupper(c)
-  execute "nnoremap `".c "`".toupper(c)
-endfor
-for C in ['A','B','C','D','E','F','G','H','I','J','K','L','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
-  execute "nnoremap m".C "m".tolower(C)
-  execute "nnoremap '".C "'".tolower(C)
-  execute "nnoremap `".C "`".tolower(C)
-endfor
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " View_(themes)
@@ -221,3 +136,90 @@ let tag_files=split(globpath('~/.vim/tags','*.tag'), '\n')
 for f in tag_files
   execute "set tags+=" . f
 endfor
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+" Keys_mapping
+""""""""""""""""""""""""""""""""""""""""""""""""
+" No use arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+" Map alt key have a little issue on Linux as it prepend <Esc>
+" to the {char}. see :h :map-alt-keys and google to see the issue
+" Approach to fix it here is to map alt key from windows to prepend
+" <Esc> to the char so it behave similar to linux
+" From below, all alt-{char} are map to <Esc>{char}
+if has('win32')
+  map <A-h> <Esc>h
+  map <A-j> <Esc>j
+  map <A-k> <Esc>k
+  map <A-l> <Esc>l
+  map <A-s> <Esc>s
+  map <A-d> <Esc>d
+  map <A-D> <Esc>D
+  map <A-n> <Esc>n
+  map <A-r> <Esc>r
+
+  imap <A-s> <Esc>s
+  imap <A-r> <Esc>r
+
+  cmap <A-h> <Esc>h
+  cmap <A-l> <Esc>l
+  cmap <A-s> <Esc>s
+  cmap <A-d> <Esc>d
+  cmap <A-D> <Esc>D
+  cmap <A-n> <Esc>n
+  cmap <A-r> <Esc>r
+endif
+
+" Map quick esc
+inoremap <Esc>s <Esc>
+vnoremap <Esc>s <Esc>
+cnoremap <Esc>s <Esc>
+nnoremap <Esc>s <Nop>
+nnoremap <Esc>d :
+vnoremap <Esc>d :
+
+" quick move up/down in normal and visual mode
+nnoremap <Esc>j }
+nnoremap <Esc>k {
+vnoremap <Esc>j }
+vnoremap <Esc>k {
+
+" quick move left/right in normal, visual and command line mode
+nnoremap E b
+vnoremap E b
+nnoremap <Esc>h B
+nnoremap <Esc>l W
+vnoremap <Esc>h B
+vnoremap <Esc>l W
+cnoremap <Esc>h <C-Left>
+cnoremap <Esc>l <C-Right>
+
+" quick move up/down in command line mode
+cnoremap <Esc>d <Up>
+cnoremap <Esc>D <Down>
+
+" quick register
+cnoremap <Esc>r <C-r>
+inoremap <Esc>r <C-r>
+noremap <Esc>r "
+
+" switch global/local map by switching uppercase/lowercase.
+" Except the letter 'm' will be kept.
+" ma --> mA ; 'a -->'A ; `a -->`A
+" mm --> mm ; 'm -->'m ; `m -->`m (letter 'm' does not change)
+for c in ['a','b','c','d','e','f','g','h','i','j','k','l','n','o','p','q','r','s','t','u','v','w','x','y','z']
+  execute "nnoremap m".c "m".toupper(c)
+  execute "nnoremap '".c "'".toupper(c)
+  execute "nnoremap `".c "`".toupper(c)
+endfor
+for C in ['A','B','C','D','E','F','G','H','I','J','K','L','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+  execute "nnoremap m".C "m".tolower(C)
+  execute "nnoremap '".C "'".tolower(C)
+  execute "nnoremap `".C "`".tolower(C)
+endfor
+
