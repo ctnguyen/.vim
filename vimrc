@@ -119,6 +119,21 @@ cnoremap <Esc>r <C-r>
 inoremap <Esc>r <C-r>
 noremap <Esc>r "
 
+" switch global/local map by switching uppercase/lowercase.
+" Except the letter 'm' will be kept.
+" ma --> mA ; 'a -->'A ; `a -->`A
+" mm --> mm ; 'm -->'m ; `m -->`m (letter 'm' does not change)
+for c in ['a','b','c','d','e','f','g','h','i','j','k','l','n','o','p','q','r','s','t','u','v','w','x','y','z']
+  execute "nnoremap m".c "m".toupper(c)
+  execute "nnoremap '".c "'".toupper(c)
+  execute "nnoremap `".c "`".toupper(c)
+endfor
+for C in ['A','B','C','D','E','F','G','H','I','J','K','L','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+  execute "nnoremap m".C "m".tolower(C)
+  execute "nnoremap '".C "'".tolower(C)
+  execute "nnoremap `".C "`".tolower(C)
+endfor
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " View_(themes)
 """"""""""""""""""""""""""""""""""""""""""""""""
