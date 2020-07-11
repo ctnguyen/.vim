@@ -25,14 +25,20 @@
 " create a symlink directory in windwos. Open cmd as administrator, run
 "      mklink /D "C:\path\to\home_dir\vimfiles" "C:\path\to\home_dir\.vim"
 "
-" print vim information. :echo vimenv to see all information here
-let vimenv="Vim environments\n"
-let vimenv=join([vimenv,join(["      $HOME",$HOME      ],"=")],"\n")
-let vimenv=join([vimenv,join(["       $VIM",$VIM       ],"=")],"\n")
-let vimenv=join([vimenv,join(["$VIMRUNTIME",$VIMRUNTIME],"=")],"\n")
-let vimenv=join([vimenv,join(["   $MYVIMRC",$MYVIMRC   ],"=")],"\n")
-let vimenv=join([vimenv,"loading scripts", "To see later. Now use :scriptnames"],"\n\n")
-" :scriptnames to see all loaded scripts
+" print vim information. :echo VimEnv() to see all information here
+function! VimEnv()
+  let str_val="Vim environments\n"
+  let str_val=join([str_val,join(["      $HOME",$HOME      ],"=")],"\n")
+  let str_val=join([str_val,join(["       $VIM",$VIM       ],"=")],"\n")
+  let str_val=join([str_val,join(["$VIMRUNTIME",$VIMRUNTIME],"=")],"\n")
+  let str_val=join([str_val,join(["   $MYVIMRC",$MYVIMRC   ],"=")],"\n")
+  redir => loaded_scripts
+    silent execute "scriptnames"
+  redir END
+  let str_val=join([str_val,"Loaded scripts"],"\n\n")
+  let str_val=join([str_val, loaded_scripts],"\n")
+  return str_val
+endfunction
 
 " auto reload vimrc
 autocmd! bufwritepost .vimrc source ~/.vim/vimrc
