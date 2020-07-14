@@ -120,12 +120,12 @@ call plug#begin('~/.vim/vim_plugin')
 " nerdcommenter : usefull function commenter
 Plug 'preservim/nerdcommenter'
 
-" ack : powerfull search tool
-" install ack : cpan App::Ack
+" ack : powerfull search tool. First need to install Ack
+"    - on Windows use chocolatey : choco install Ack
+"    - on Linux install perl then : cpan App::Ack
 Plug 'mileszs/ack.vim'
 
-" fzf : fuzzy finder 
-" install fzf :
+" fzf : fuzzy finder. First need to install fzf :
 "    - on Windows : Download the prebuild binary from https://github.com/junegunn/fzf-bin/releases and have a look at https://github.com/jesse23/with
 "    - on Linux   : git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }

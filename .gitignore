@@ -1,5 +1,8 @@
 # ignore local directories
 autoload
 pack
-plugins
+vim_plugin
 tags
+
+breakpoints
+sessions
