@@ -48,7 +48,7 @@ autocmd! bufwritepost .vimrc source ~/.vim/vimrc
 " Tab_management
 """"""""""""""""""""""""""""""""""""""""""""""""
 "https://stackoverflow.com/questions/102384/using-vims-tabs-like-buffers
-set switchbuf=usetab,newtab
+"set switchbuf=usetab,newtab
 
 " Switch tab
 nnoremap th gT
@@ -112,7 +112,7 @@ set laststatus=2
 " Then add plugin by 
 "    - add to vimrc plugin session: Plug 'myplugin/path'
 "    - open vimrc and run command :PlugInstall
-call plug#begin('~/.vim/plugins')
+call plug#begin('~/.vim/vim_plugin')
 
 " nerdcommenter : usefull function commenter
 Plug 'preservim/nerdcommenter'
@@ -122,7 +122,9 @@ Plug 'preservim/nerdcommenter'
 Plug 'mileszs/ack.vim'
 
 " fzf : fuzzy finder 
-" install fzf : git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install
+" install fzf :
+"    - on Windows : Download the prebuild binary from https://github.com/junegunn/fzf-bin/releases and have a look at https://github.com/jesse23/with
+"    - on Linux   : git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
