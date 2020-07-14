@@ -125,10 +125,10 @@ Plug 'mileszs/ack.vim'
 " install fzf :
 "    - on Windows : Download the prebuild binary from https://github.com/junegunn/fzf-bin/releases and have a look at https://github.com/jesse23/with
 "    - on Linux   : git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install
+Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " tags
