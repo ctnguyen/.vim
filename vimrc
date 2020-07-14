@@ -100,6 +100,9 @@ call ResetTheme()
 "    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 " quick toogle NERDTree
 noremap <Esc>n :NERDTreeToggle<CR>
+" show line numbers in NERDTree window
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal nornu
 
 " lightline : nice statusline and tabline
 "    git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q
