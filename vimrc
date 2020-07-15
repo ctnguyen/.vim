@@ -108,6 +108,7 @@ let NERDTreeShowHidden=1
 " lightline : nice statusline and tabline
 "    git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q
 set laststatus=2
+let g:lightline = { 'component': { 'filename': '%F', } }
 
 """" Plugins """""""""""""""""
 
