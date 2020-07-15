@@ -229,6 +229,14 @@ nnoremap <S-Right> <C-w>L
 nnoremap <S-Up> <C-w>K
 nnoremap <S-Down> <C-w>J
 
+" quick buffer jumps
+nnoremap <Space> :bn<CR>
+nnoremap <S-Space> :bp<CR>
+nnoremap <C-Space> :bd<CR>
+
+" u undo, U redo
+nnoremap U <C-r>
+
 " switch global/local map by switching uppercase/lowercase.
 " Except the letter 'm' will be kept.
 " ma --> mA ; 'a -->'A ; `a -->`A
