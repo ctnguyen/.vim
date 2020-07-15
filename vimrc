@@ -98,7 +98,7 @@ call ResetTheme()
 
 " NERDTree : easy directory explorer
 "    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
-" quick toogle NERDTree
+" fast toogle NERDTree
 noremap <Esc>n :NERDTreeToggle<CR>
 " show line numbers in NERDTree window
 let NERDTreeShowLineNumbers=1
@@ -183,7 +183,7 @@ if has('win32')
   cmap <A-r> <Esc>r
 endif
 
-" Map quick esc
+" fast esc
 noremap <Esc>s <Esc>
 vnoremap <Esc>s <Esc>
 noremap! <Esc>s <Esc>
@@ -192,13 +192,13 @@ nnoremap <Esc>s <Nop>
 nnoremap <Esc>d :
 vnoremap <Esc>d :
 
-" quick move up/down in normal and visual mode
+" fast move up/down in normal and visual mode
 nnoremap <Esc>j }
 nnoremap <Esc>k {
 vnoremap <Esc>j }
 vnoremap <Esc>k {
 
-" quick move left/right in normal, visual and command line mode
+" fast move left/right in normal, visual and command line mode
 nnoremap E b
 vnoremap E b
 nnoremap <Esc>h ^
@@ -208,28 +208,28 @@ vnoremap <Esc>l $
 cnoremap <Esc>h <C-Left>
 cnoremap <Esc>l <C-Right>
 
-" quick move up/down in command line mode
+" fast move up/down in command line mode
 cnoremap <Esc>d <Up>
 cnoremap <Esc>D <Down>
 
-" quick register
+" fast register
 noremap <Esc>r "
 noremap! <Esc>r <C-r>
 
-" quick windows jump
+" fast windows jump
 noremap <Tab> <C-w>w
 noremap <Left> <C-w>h
 noremap <Right> <C-w>l
 noremap <Up> <C-w>k
 noremap <Down> <C-w>j
 
-" quick reorganise split windows vertical/horizontal
+" fast reorganise split windows vertical/horizontal
 nnoremap <S-Left> <C-w>H
 nnoremap <S-Right> <C-w>L
 nnoremap <S-Up> <C-w>K
 nnoremap <S-Down> <C-w>J
 
-" quick buffer jumps
+" fast buffer jumps
 nnoremap <Space> :bn<CR>
 nnoremap <S-Space> :bp<CR>
 nnoremap <C-Space> :bd<CR>
