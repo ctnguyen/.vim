@@ -108,7 +108,7 @@ let NERDTreeShowHidden=1
 " lightline : nice statusline and tabline
 "    git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q
 set laststatus=2
-let g:lightline = { 'component': { 'filename': '%F', } }
+let g:lightline = { 'component': {'filename': '%F'} }
 
 """" Plugins """""""""""""""""
 
@@ -154,11 +154,6 @@ endfor
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Keys_mapping
 """"""""""""""""""""""""""""""""""""""""""""""""
-" No use arrow keys
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
 
 " Map alt key have a little issue on Linux as it prepend <Esc>
 " to the {char}. see :h :map-alt-keys and google to see the issue
@@ -206,10 +201,10 @@ vnoremap <Esc>k {
 " quick move left/right in normal, visual and command line mode
 nnoremap E b
 vnoremap E b
-nnoremap <Esc>h B
-nnoremap <Esc>l W
-vnoremap <Esc>h B
-vnoremap <Esc>l W
+nnoremap <Esc>h ^
+nnoremap <Esc>l $
+vnoremap <Esc>h ^
+vnoremap <Esc>l $
 cnoremap <Esc>h <C-Left>
 cnoremap <Esc>l <C-Right>
 
@@ -218,9 +213,21 @@ cnoremap <Esc>d <Up>
 cnoremap <Esc>D <Down>
 
 " quick register
-cnoremap <Esc>r <C-r>
-inoremap <Esc>r <C-r>
 noremap <Esc>r "
+noremap! <Esc>r <C-r>
+
+" quick windows jump
+noremap <Tab> <C-w>w
+noremap <Left> <C-w>h
+noremap <Right> <C-w>l
+noremap <Up> <C-w>k
+noremap <Down> <C-w>j
+
+" quick reorganise split windows vertical/horizontal
+nnoremap <S-Left> <C-w>H
+nnoremap <S-Right> <C-w>L
+nnoremap <S-Up> <C-w>K
+nnoremap <S-Down> <C-w>J
 
 " switch global/local map by switching uppercase/lowercase.
 " Except the letter 'm' will be kept.
