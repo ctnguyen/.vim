@@ -103,6 +103,7 @@ noremap <Esc>n :NERDTreeToggle<CR>
 " show line numbers in NERDTree window
 let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal nornu
+let NERDTreeShowHidden=1
 
 " lightline : nice statusline and tabline
 "    git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q
@@ -187,9 +188,10 @@ if has('win32')
 endif
 
 " Map quick esc
-inoremap <Esc>s <Esc>
+noremap <Esc>s <Esc>
 vnoremap <Esc>s <Esc>
-cnoremap <Esc>s <Esc>
+noremap! <Esc>s <Esc>
+tnoremap <Esc>s <Esc>
 nnoremap <Esc>s <Nop>
 nnoremap <Esc>d :
 vnoremap <Esc>d :
