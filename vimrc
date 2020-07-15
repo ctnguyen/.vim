@@ -187,10 +187,15 @@ endif
 noremap <Esc>s <Esc>
 vnoremap <Esc>s <Esc>
 noremap! <Esc>s <Esc>
-tnoremap <Esc>s <Esc>
 nnoremap <Esc>s <Nop>
+
+" fast switch to command mode
 nnoremap <Esc>d :
 vnoremap <Esc>d :
+
+" fast move up/down in command line mode
+cnoremap <Esc>d <Up>
+cnoremap <Esc>D <Down>
 
 " fast move up/down in normal and visual mode
 nnoremap <Esc>j }
@@ -208,16 +213,15 @@ vnoremap <Esc>l $
 cnoremap <Esc>h <C-Left>
 cnoremap <Esc>l <C-Right>
 
-" fast move up/down in command line mode
-cnoremap <Esc>d <Up>
-cnoremap <Esc>D <Down>
-
 " fast register
 noremap <Esc>r "
 noremap! <Esc>r <C-r>
 
 " fast windows jump
 noremap <Tab> <C-w>w
+tnoremap <Tab> <C-w>w
+noremap <S-Tab> <C-w>W
+tnoremap <S-Tab> <C-w>W
 noremap <Left> <C-w>h
 noremap <Right> <C-w>l
 noremap <Up> <C-w>k
