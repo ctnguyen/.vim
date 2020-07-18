@@ -43,6 +43,25 @@ endfunction
 " auto reload vimrc
 autocmd! bufwritepost .vimrc source ~/.vim/vimrc
 
+" set file type for C
+autocmd BufNewFile,BufReadPost *.h,*.c set filetype=c
+" set file type for C++
+autocmd BufNewFile,BufReadPost *.hpp,*.hh,*.cpp,*.cc set filetype=cpp
+" set file type for CMake
+autocmd BufNewFile,BufReadPost CMakeLists.txt,*.cmake set filetype=cmake
+autocmd FileType cmake setlocal shiftwidth=2 softtabstop=2 expandtab
+
+" Folding by syntax
+set foldmethod=syntax
+set foldlevel=5
+" Easy open/close fold : Switch map z{char} <--> z{CHAR}
+" zr/mr fully open/close all.
+" zo/zc fully open/close one fold
+" zO open one level
+for c in ['m','o','r']
+  execute "nnoremap z".c "z".toupper(c)
+  execute "nnoremap z".toupper(c) "z".c
+endfor
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Tab_management
