@@ -43,6 +43,12 @@ endfunction
 " auto reload vimrc
 autocmd! bufwritepost .vimrc source ~/.vim/vimrc
 
+if has('win32')
+    set grepprg=ack
+"    compiler msvc
+"    set makeprg=msbuild
+endif
+
 " set file type for C
 autocmd BufNewFile,BufReadPost *.h,*.c set filetype=c
 " set file type for C++
