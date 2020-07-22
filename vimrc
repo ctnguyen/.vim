@@ -132,8 +132,10 @@ let NERDTreeShowHidden=1
 
 " lightline : nice statusline and tabline
 "    git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q
+" Activate lightline functioinalities
 set laststatus=2
-let g:lightline = { 'component': {'filename': '%F'} }
+" Show full path in status line
+"let g:lightline = { 'component': {'filename': '%F'} }
 
 """" Plugins """""""""""""""""
 
@@ -157,6 +159,15 @@ Plug 'mileszs/ack.vim'
 "    - on Linux   : git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" vim-cpp-modern. Better C/C++ syntax highlighting.
+" Nothin to install, download files from https://github.com/bfrg/vim-cpp-modern
+" then copy to ~/.vim/after/syntax
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_named_requirements_highlight = 1
+let c_no_curly_error = 1
 
 call plug#end()
 
