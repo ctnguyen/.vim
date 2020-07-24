@@ -240,8 +240,6 @@ vnoremap <Esc>j }
 vnoremap <Esc>k {
 
 " fast move left/right in normal, visual and command line mode
-nnoremap E b
-vnoremap E b
 nnoremap <Esc>h ^
 nnoremap <Esc>l $
 vnoremap <Esc>h ^
