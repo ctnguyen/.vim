@@ -59,7 +59,9 @@ autocmd FileType cmake setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " Folding by syntax
 set foldmethod=syntax
-set foldlevelstart=20
+"set foldlevelstart=20 "TODO this disable remembering fold level when buffer
+"switch
+
 " Easy open/close fold : Switch map z{char} <--> z{CHAR}
 " zr/mr fully open/close all.
 " zo/zc fully open/close one fold
