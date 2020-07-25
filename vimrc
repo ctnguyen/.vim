@@ -253,26 +253,28 @@ cnoremap <Esc>l <C-Right>
 noremap <Esc>r "
 noremap! <Esc>r <C-r>
 
-" fast windows jump
-noremap <Tab> <C-w>w
-tnoremap <Tab> <C-w>w
-noremap <S-Tab> <C-w>W
-tnoremap <S-Tab> <C-w>W
-noremap <Left> <C-w>h
-noremap <Right> <C-w>l
-noremap <Up> <C-w>k
-noremap <Down> <C-w>j
-
 " fast reorganise split windows vertical/horizontal
 nnoremap <S-Left> <C-w>H
 nnoremap <S-Right> <C-w>L
 nnoremap <S-Up> <C-w>K
 nnoremap <S-Down> <C-w>J
 
-" fast buffer jumps
-nnoremap <Space> :bn<CR>
-nnoremap <S-Space> :bp<CR>
-nnoremap <C-Space> :bd<CR>
+" fast windows jump
+noremap <Left> <C-w>h
+noremap <Right> <C-w>l
+noremap <Up> <C-w>k
+noremap <Down> <C-w>j
+
+" fast window/buffer jumps using <Tab>
+"   - More than one windows : switch window
+"   - Only one window       : switch buffer
+"   - b<Tab> always switch buffer
+noremap <expr> <Tab> winnr('$')>1 ? '<C-w>w' : ':bnext<CR>'
+tnoremap <expr> <Tab> winnr('$')>1 ? '<C-w>w' : ':bnext<CR>'
+noremap <expr> <S-Tab> winnr('$')>1 ? '<C-w>W' : ':bprevious<CR>'
+tnoremap <expr> <S-Tab> winnr('$')>1 ? '<C-w>W' : ':bprevious<CR>'
+noremap <expr> b<Tab> ':bnext<CR>'
+noremap <expr> b<S-Tab> ':bprevious<CR>'
 
 " u undo, U redo
 nnoremap U <C-r>
