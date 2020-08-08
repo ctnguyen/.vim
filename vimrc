@@ -126,7 +126,7 @@ call ResetTheme()
 " NERDTree : easy directory explorer
 "    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
 " fast toogle NERDTree
-noremap <Esc>n :NERDTreeToggle<CR>
+noremap <M-n> :NERDTreeToggle<CR>
 " show line numbers in NERDTree window
 let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal nornu
@@ -195,63 +195,52 @@ endfor
 
 " Map alt key have a little issue on Linux as it prepend <Esc>
 " to the {char}. see :h :map-alt-keys and google to see the issue
-" Approach to fix it here is to map alt key from windows to prepend
-" <Esc> to the char so it behave similar to linux
-" From below, all alt-{char} are map to <Esc>{char}
-if has('win32')
-  map <A-h> <Esc>h
-  map <A-j> <Esc>j
-  map <A-k> <Esc>k
-  map <A-l> <Esc>l
-  map <A-s> <Esc>s
-  map <A-d> <Esc>d
-  map <A-D> <Esc>D
-  map <A-n> <Esc>n
-  map <A-r> <Esc>r
-
-  imap <A-s> <Esc>s
-  imap <A-r> <Esc>r
-
-  cmap <A-h> <Esc>h
-  cmap <A-l> <Esc>l
-  cmap <A-s> <Esc>s
-  cmap <A-d> <Esc>d
-  cmap <A-D> <Esc>D
-  cmap <A-n> <Esc>n
-  cmap <A-r> <Esc>r
+"
+" The following make the map for alt key work on Linux
+" See : https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
+if !has('win32')
+  execute "set <M-h>=\eh"
+  execute "set <M-j>=\ej"
+  execute "set <M-k>=\ek"
+  execute "set <M-l>=\el"
+  execute "set <M-s>=\es"
+  execute "set <M-d>=\ed"
+  execute "set <M-D>=\eD"
+  execute "set <M-n>=\en"
+  execute "set <M-r>=\er"
 endif
 
 " fast esc
-noremap <Esc>s <Esc>
-vnoremap <Esc>s <Esc>
-noremap! <Esc>s <Esc>
-nnoremap <Esc>s <Nop>
+noremap <M-s> <Esc>
+vnoremap <M-s> <Esc>
+noremap! <M-s> <Esc>
+nnoremap <M-s> <Nop>
 
 " fast switch to command mode
-nnoremap <Esc>d :
-vnoremap <Esc>d :
+nnoremap <M-d> :
+vnoremap <M-d> :
 
 " fast move up/down in command line mode
-cnoremap <Esc>d <Up>
-cnoremap <Esc>D <Down>
+cnoremap <M-d> <Up>
+cnoremap <M-D> <Down>
 
 " fast move up/down in normal and visual mode
-nnoremap <Esc>j }
-nnoremap <Esc>k {
-vnoremap <Esc>j }
-vnoremap <Esc>k {
+nnoremap <M-j> }
+nnoremap <M-k> {
+vnoremap <M-j> }
+vnoremap <M-k> {
 
 " fast move left/right in normal, visual and command line mode
-nnoremap <Esc>h ^
-nnoremap <Esc>l $
-vnoremap <Esc>h ^
-vnoremap <Esc>l $
-cnoremap <Esc>h <C-Left>
-cnoremap <Esc>l <C-Right>
+nnoremap <M-h> ^
+nnoremap <M-l> $
+vnoremap <M-h> ^
+vnoremap <M-l> $
+cnoremap <M-h> <C-Left>
+cnoremap <M-l> <C-Right>
 
 " fast register
-noremap <Esc>r "
-noremap! <Esc>r <C-r>
+noremap <M-r> "
+noremap! <M-r> <C-r>
 
 " fast reorganise split windows vertical/horizontal
 nnoremap <S-Left> <C-w>H
