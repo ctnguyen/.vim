@@ -266,11 +266,11 @@ nnoremap <S-Right> <C-w>L
 nnoremap <S-Up> <C-w>K
 nnoremap <S-Down> <C-w>J
 
-" fast windows jump
-noremap <Left> <C-w>h
-noremap <Right> <C-w>l
-noremap <Up> <C-w>k
-noremap <Down> <C-w>j
+" fast windows resize
+nnoremap <Left> :vertical resize -5<CR>
+nnoremap <Right> :vertical resize +5<CR>
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
 
 " fast window/buffer jumps using <Tab>
 "   - More than one windows : switch window
