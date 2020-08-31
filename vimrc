@@ -8,6 +8,7 @@
 "   - General
 "   - Tab_management
 "   - View_(themes)
+"   - Compilation_in_vim
 "   - Packages_and_Plugins
 "   - Keys_mapping
 "
@@ -118,6 +119,23 @@ function! ResetTheme()
 endfunction
 
 call ResetTheme()
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+" Compilation_in_vim
+""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim use combination of makeprg (command) and errorformat (parser)
+" to populate errors from a command to quickfix. It already natively
+" has some default compiler. See in $VIM_INSTALL/compiler
+
+" Set default global compiler on Windows.
+if has('win32')
+    compiler! msbuild
+endif
+
+" It is possible to write a compiler plugin, i.e
+" Write a plugin that execute boost unit test and parse the error so quickfix
+" can jump directly to the error line. Same thing for pytest
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Packages_and_Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""
