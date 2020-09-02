@@ -237,6 +237,7 @@ nnoremap <M-s> <Nop>
 " fast switch to command mode
 nnoremap <M-d> :
 vnoremap <M-d> :
+tnoremap <M-d> <C-w>:
 
 " fast move up/down in command line mode
 cnoremap <M-d> <Up>
@@ -265,6 +266,10 @@ nnoremap <S-Left> <C-w>H
 nnoremap <S-Right> <C-w>L
 nnoremap <S-Up> <C-w>K
 nnoremap <S-Down> <C-w>J
+tnoremap <S-Left> <C-w>H
+tnoremap <S-Right> <C-w>L
+tnoremap <S-Up> <C-w>K
+tnoremap <S-Down> <C-w>J
 
 " fast windows resize
 nnoremap <Left> :vertical resize -5<CR>
