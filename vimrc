@@ -282,9 +282,7 @@ nnoremap <Down> :resize -2<CR>
 "   - Only one window       : switch buffer
 "   - b<Tab> always switch buffer
 noremap <expr> <Tab> winnr('$')>1 ? '<C-w>w' : ':bnext<CR>'
-tnoremap <expr> <Tab> winnr('$')>1 ? '<C-w>w' : ':bnext<CR>'
 noremap <expr> <S-Tab> winnr('$')>1 ? '<C-w>W' : ':bprevious<CR>'
-tnoremap <expr> <S-Tab> winnr('$')>1 ? '<C-w>W' : ':bprevious<CR>'
 noremap <expr> b<Tab> ':bnext<CR>'
 noremap <expr> b<S-Tab> ':bprevious<CR>'
 
