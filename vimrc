@@ -157,7 +157,7 @@ set laststatus=2
 " Show full path in status line
 "let g:lightline = { 'component': {'filename': '%F'} }
 
-"""" Plugins """""""""""""""""
+"""" Plugins using vim-plug """""""""""""""""
 
 " vim-plug : plugin manager
 "    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -189,13 +189,39 @@ let g:cpp_class_decl_highlight = 1
 let g:cpp_named_requirements_highlight = 1
 let c_no_curly_error = 1
 
+" Solidity highlighting
+" https://github.com/TovarishFin/vim-solidity
+let g:polyglot_disabled = ['solidity']
+Plug 'TovarishFin/vim-solidity'
+
 call plug#end()
+"""""""""""""""""
+
+"""" Plugins using Vundle """""""""""""""""
+" https://github.com/VundleVim/Vundle.vim#about
+set nocompatible
+filetype off
+set shellslash
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/vimfiles/bundle')
+
+Plugin 'VundleVim/Vundle.vim'
+
+"if has('win32')
+"    set encoding=utf-8
+"endif
+"Plugin 'ycm-core/YouCompleteMe'
+
+call vundle#end()
+filetype plugin indent on
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " tags
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Use ctags to generate tag files in $HOME/.vim/tags directory
-"    ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extras=+q --language-force=C++ -f /path/to/.vim/tags/boost_1_72_0.tag /path/to/DevTools/boost_1_72_0/boost
+"    ctags -R --sort=yes --c++-kinds=+pf --fields=+iaS --extra=+q --language-force=C++ -f /path/to/.vim/tags/boost_1_72_0.tag /path/to/DevTools/boost_1_72_0/boost
 
 " Not using relative path in *.tag files
 set notagrelative
