@@ -157,6 +157,14 @@ set laststatus=2
 " Show full path in status line
 "let g:lightline = { 'component': {'filename': '%F'} }
 
+" vim-javascript : tools for javascript
+"    git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
+let g:javascript_plugin_jsdoc = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
+
 """" Plugins using vim-plug """""""""""""""""
 
 " vim-plug : plugin manager
