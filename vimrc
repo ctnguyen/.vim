@@ -157,6 +157,18 @@ set laststatus=2
 " Show full path in status line
 "let g:lightline = { 'component': {'filename': '%F'} }
 
+" vim-go : IDE like development for golang
+"    git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/vim-go/doc" -c q
+" Disable vim-go auto modifying text
+let g:go_fmt_autosave = 0
+let g:go_mod_fmt_autosave = 0
+" Setup the widgets locations
+let g:go_debug_windows = {
+        \ 'vars':       'rightbelow 30vnew',
+        \ 'stack':      'rightbelow 20new',
+    \ }
+
+
 " vim-javascript : tools for javascript
 "    git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
 let g:javascript_plugin_jsdoc = 1
