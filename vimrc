@@ -192,6 +192,13 @@ let g:go_debug_windows = {
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 "packadd! vimspector
 
+" vim-cpp-modern. Better C/C++ syntax highlighting.
+"     git clone --depth=1 https://github.com/bfrg/vim-cpp-modern ~/.vim/pack/git-plugins/start ; rm ~/.vim/pack/git-plugins/start/README.md ; -fR rm ~/.vim/pack/git-plugins/start/.git
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_named_requirements_highlight = 1
+let c_no_curly_error = 1
 
 " vim-javascript : tools for javascript
 "    git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript
@@ -216,22 +223,13 @@ Plug 'preservim/nerdcommenter'
 " ack : powerfull search tool. First need to install Ack
 "    - on Windows use chocolatey : choco install Ack
 "    - on Linux install perl then : cpan App::Ack
-Plug 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim'
 
 " fzf : fuzzy finder. First need to install fzf :
 "    - on Windows : Download the prebuild binary from https://github.com/junegunn/fzf-bin/releases and have a look at https://github.com/jesse23/with
 "    - on Linux   : git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install
-Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-" vim-cpp-modern. Better C/C++ syntax highlighting.
-" Nothin to install, download files from https://github.com/bfrg/vim-cpp-modern
-" then copy to ~/.vim/after/syntax
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_named_requirements_highlight = 1
-let c_no_curly_error = 1
+"Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 
 " Solidity highlighting
 " https://github.com/TovarishFin/vim-solidity
@@ -243,6 +241,7 @@ call plug#end()
 
 """" Plugins using Vundle """""""""""""""""
 " https://github.com/VundleVim/Vundle.vim#about
+"    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set nocompatible
 filetype off
 set shellslash
