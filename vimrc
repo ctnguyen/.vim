@@ -178,6 +178,7 @@ let g:go_mod_fmt_autosave = 0
 let g:go_debug_windows = {
         \ 'vars':       'rightbelow 30vnew',
         \ 'stack':      'rightbelow 20new',
+        \ 'out':        'botright 5new',
     \ }
 
 
