@@ -5,6 +5,7 @@
 "        git@github.com:ctnguyen/.vim.git
 "
 " TOC
+"   - Build
 "   - General
 "   - Tab_management
 "   - View_(themes)
@@ -17,10 +18,21 @@
 "   - Test first in command mode before puting in vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""
+" Build vim from source
+""""""""""""""""""""""""""""""""""""""""""""""""
+" On Ubuntu
+"     git clone https://github.com/vim/vim.git ; cd vim
+"     ./configure --with-features=huge --enable-cscope --enable-multibyte --enable-python3interp --with-python3-config-dir=$(python3-config --configdir) --enable-fail-if-missing --prefix=/abs/path/to/devtool/vim-8.2
+"     make install
+"
+" On Windows
+"    TODO
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " General
 """"""""""""""""""""""""""""""""""""""""""""""""
+"
 " On windows, vim consider user VIM directory as $HOME/vimfiles
 " To make it work for both gvim, batch vim as git-bash vim, it will need to
 " create a symlink directory in windwos. Open cmd as administrator, run
