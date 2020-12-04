@@ -21,13 +21,16 @@
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Build vim from source
 """"""""""""""""""""""""""""""""""""""""""""""""
-" On Ubuntu
+" Setup python
+"     python -m pip install debugpy mkdocs pymdown-extensions plantuml_markdown py-solc web3
+" Clone the source
 "     git clone https://github.com/vim/vim.git ; cd vim
+" On Ubuntu
 "     ./configure --with-features=huge --enable-cscope --enable-multibyte --enable-python3interp --with-python3-config-dir=$(python3-config --configdir) --enable-fail-if-missing --prefix=/abs/path/to/devtool/vim-8.2
 "     make install
 "
 " On Windows
-"    TODO
+"     TODO
 
 """"""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -180,6 +183,14 @@ let g:go_debug_windows = {
         \ 'stack':      'rightbelow 20new',
         \ 'out':        'botright 5new',
     \ }
+
+" vimspector TODO
+"    git clone https://github.com/puremourning/vimspector ~/.vim/pack/vimspector/opt/vimspector
+"    cd ~/.vim/pack/vimspector/opt/vimspector
+"    python -m pip install debugpy
+"    python install_gadget.py --enable-python --force-enable-node
+"let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+"packadd! vimspector
 
 
 " vim-javascript : tools for javascript
