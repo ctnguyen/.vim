@@ -18,6 +18,12 @@
 "   - Test first in command mode before puting in vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" On Windows, it is important to set encoding utf-8 at the top of the vimrc file.
+" Otherwise it will break mapping alt-key
+if has('win32')
+    set encoding=utf-8
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Build vim from source
 """"""""""""""""""""""""""""""""""""""""""""""""
@@ -184,13 +190,17 @@ let g:go_debug_windows = {
         \ 'out':        'botright 5new',
     \ }
 
-" vimspector TODO
+" vimspector
 "    git clone https://github.com/puremourning/vimspector ~/.vim/pack/vimspector/opt/vimspector
 "    cd ~/.vim/pack/vimspector/opt/vimspector
-"    python -m pip install debugpy
 "    python install_gadget.py --enable-python --force-enable-node
-"let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-"packadd! vimspector
+" Then it will need a manual action : create a file .vimspector.json in the
+" root directory of the python project to let vimspector regconize. Have a
+" look on the website how to create that  file, or copy example from
+"    ~/.vim/pack/vimspector/opt/vimspector/support/test/python
+" Similar approach can work with nodejs, truffle as well
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+packadd! vimspector
 
 " vim-cpp-modern. Better C/C++ syntax highlighting.
 "     git clone --depth=1 https://github.com/bfrg/vim-cpp-modern ~/.vim/pack/git-plugins/start ; rm ~/.vim/pack/git-plugins/start/README.md ; -fR rm ~/.vim/pack/git-plugins/start/.git
