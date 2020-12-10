@@ -313,6 +313,10 @@ vnoremap <M-s> <Esc>
 noremap! <M-s> <Esc>
 nnoremap <M-s> <Nop>
 
+" fast cancel highlight search and highlight visual
+nnoremap <Space> :nohls<CR>
+vnoremap <Space> <Esc>:nohls<CR>
+
 " fast switch to command mode
 nnoremap <M-d> :
 vnoremap <M-d> :
