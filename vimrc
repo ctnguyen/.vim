@@ -230,6 +230,12 @@ call plug#begin('~/.vim/vim_plugin')
 " nerdcommenter : usefull function commenter
 Plug 'preservim/nerdcommenter'
 
+" vim-easy-align
+"     https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 " ack : powerfull search tool. First need to install Ack
 "    - on Windows use chocolatey : choco install Ack
 "    - on Linux install perl then : cpan App::Ack
@@ -309,17 +315,17 @@ endif
 
 " fast esc
 noremap <M-s> <Esc>
-vnoremap <M-s> <Esc>
+xnoremap <M-s> <Esc>
 noremap! <M-s> <Esc>
 nnoremap <M-s> <Nop>
 
 " fast cancel highlight search and highlight visual
 nnoremap <Space> :nohls<CR>
-vnoremap <Space> <Esc>:nohls<CR>
+xnoremap <Space> <Esc>:nohls<CR>
 
 " fast switch to command mode
 nnoremap <M-d> :
-vnoremap <M-d> :
+xnoremap <M-d> :
 tnoremap <M-d> <C-w>:
 
 " fast move up/down in command line mode
