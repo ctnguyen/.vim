@@ -28,7 +28,7 @@ endif
 " Build vim from source
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Setup python
-"     python -m pip install debugpy mkdocs pymdown-extensions plantuml_markdown py-solc web3
+"     python -m pip install pytest mkdocs pymdown-extensions plantuml_markdown py-solc web3
 " Clone the source
 "     git clone https://github.com/vim/vim.git ; cd vim
 " On Ubuntu
