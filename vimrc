@@ -203,7 +203,7 @@ let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 packadd! vimspector
 
 " vim-cpp-modern. Better C/C++ syntax highlighting.
-"     git clone --depth=1 https://github.com/bfrg/vim-cpp-modern ~/.vim/pack/git-plugins/start ; rm ~/.vim/pack/git-plugins/start/README.md ; -fR rm ~/.vim/pack/git-plugins/start/.git
+"     git clone --depth=1 https://github.com/bfrg/vim-cpp-modern ~/.vim/pack/git-plugins/start ; rm ~/.vim/pack/git-plugins/start/README.md ; rm -fR ~/.vim/pack/git-plugins/start/.git
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
