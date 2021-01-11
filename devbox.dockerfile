@@ -2,25 +2,30 @@ FROM ubuntu:20.04
 LABEL maintainer=chithanhnguyen.math@gmail.com
 
 # To build the image
-#     docker build -t dev:all -f devbox.dockerfile /path/to/this/dir
+#     docker build -t ctn:dev -f devbox.dockerfile /path/to/this/dir
 #
 # To run the container mounting readonly local .ssh directory to use local ssh keys :
-#     docker container run --name devbox --mount type=bind,source="/path/to/home/dir/.ssh",target=/home/dev/.ssh,readonly -it dev:all
+#     docker container run --name devbox --mount type=bind,source="/path/to/home/dir/.ssh",target=/home/dev/.ssh,readonly -it ctn:dev
 #
 # Start/stop the container
 #     docker container start devbox -i
 #     docker container stop devbox -i
+#
+# To remove everything
+#    docker system prune -a
 
 ## System setup ######################################################
 
 # Install Ubuntu's packages and utilities
 RUN apt-get update ;                                         \
     apt-get install -y                                       \
-    apt-utils sudo openssh-client wget curl                  \
-    vim git build-essential python3 python3-pip ;            \
+    apt-utils sudo openssh-client wget curl gnupg            \
+    vim git build-essential python3 python3-pip;             \
     wget https://golang.org/dl/go1.15.6.linux-amd64.tar.gz ; \
     tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz ;     \
-    rm go1.15.6.linux-amd64.tar.gz ;
+    rm go1.15.6.linux-amd64.tar.gz ;                         \
+    curl -sL https://deb.nodesource.com/setup_15.x | bash -; \
+    apt-get install -y nodejs; npm install -g npm@7.4.0      \
 
 # TODO build/install latest cmake
 
@@ -32,6 +37,11 @@ RUN python3 -m pip install --upgrade pip ; \
     plantuml_markdown       \
     py-solc web3 protobuf   \
     jsonschema
+
+# Install nodejs's packages
+RUN npm install -g                                \
+    mocha cheerio web3 ganache-cli                \
+    @truffle/hdwallet-provider @truffle/contract
 
 # Setup sudoer user 'dev:dev'
 RUN useradd -m dev -d /home/dev -p $(openssl passwd dev); usermod -aG sudo dev ; \
