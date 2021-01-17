@@ -13,39 +13,48 @@ LABEL maintainer=chithanhnguyen.math@gmail.com
 #
 # To remove everything
 #    docker system prune -a
+#
+# To view listening ports
+#    sudo netstat -tunlp
+#
 
 ## System setup ######################################################
 
 # Install Ubuntu's packages and utilities
-RUN apt-get update ;                                         \
-    apt-get install -y                                       \
-    apt-utils sudo openssh-client wget curl gnupg            \
-    vim git build-essential python3 python3-pip;             \
-    wget https://golang.org/dl/go1.15.6.linux-amd64.tar.gz ; \
-    tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz ;     \
-    rm go1.15.6.linux-amd64.tar.gz ;                         \
-    curl -sL https://deb.nodesource.com/setup_15.x | bash -; \
-    apt-get install -y nodejs; npm install -g npm@7.4.0      \
+RUN apt-get update ;                                             \
+    apt-get install -y                                           \
+    apt-utils sudo openssh-client wget curl gnupg lsof net-tools \
+    vim git build-essential python3 python3-pip;                 \
+    wget https://golang.org/dl/go1.15.6.linux-amd64.tar.gz ;     \
+    tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz ;         \
+    rm go1.15.6.linux-amd64.tar.gz ;                             \
+    curl -sL https://deb.nodesource.com/setup_15.x | bash -;     \
+    apt-get install -y nodejs; npm install -g npm@7.4.0 ;        \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - ;                             \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list ; \
+    apt-get update ; apt-get install -y yarn ;
 
 # TODO build/install latest cmake
 
 # Install python's packages
 RUN python3 -m pip install --upgrade pip ; \
     python3 -m pip install  \
-    pytest requests  mkdocs \
-    pymdown-extensions      \
-    plantuml_markdown       \
+    pytest requests         \
+    numpy scipy             \
+    matplotlib graphviz     \
     py-solc web3 protobuf   \
-    jsonschema
+    jsonschema              \
+    mkdocs pymdown-extensions plantuml_markdown
 
 # Install nodejs's packages
-RUN npm install -g                                \
-    mocha cheerio web3 ganache-cli                \
-    @truffle/hdwallet-provider @truffle/contract
+RUN npm install -g mocha cheerio truffle web3 ganache-cli
+
 
 # Setup sudoer user 'dev:dev'
 RUN useradd -m dev -d /home/dev -p $(openssl passwd dev); usermod -aG sudo dev ; \
-    mkdir -p /home/dev/.ssh ; chown -R dev:dev /home/dev ;                       \
+    mkdir -p /home/dev/.ssh ;                                                    \
+    mkdir -p /home/dev/src ; mkdir -p /home/dev/build ; mkdir -p /home/dev/bin ; \
+    chown -R dev:dev /home/dev ;                                                 \
     echo '#' >> home/dev/.bashrc ;                                               \
     echo '#' >> home/dev/.bashrc ;                                               \
     echo 'alias python=/usr/bin/python3' >> home/dev/.bashrc ;                   \
