@@ -1,11 +1,25 @@
 FROM ubuntu:20.04
 LABEL maintainer=chithanhnguyen.math@gmail.com
 
+# This docker file build a docker image based on ubuntu 20.04
+#    - install some usefull tools for developments
+#    - setup non root user 'dev'
+#
 # To build the image
 #     docker build -t ctn:dev -f devbox.dockerfile /path/to/this/dir
 #
 # To run the container mounting readonly local .ssh directory to use local ssh keys :
 #     docker container run --name devbox --mount type=bind,source="/path/to/home/dir/.ssh",target=/home/dev/.ssh,readonly -it ctn:dev
+#
+# To run the container mounting also development directory to develop inside :
+#     docker volume create development_something
+#     docker container run --name dev_something                                                \
+#        --mount type=bind,source="/path/to/home/dir/.ssh",target=/home/dev/.ssh,readonly      \
+#        --mount type=volume,source=development_something,target=/home/dev/development         \
+#        -it ctn:dev
+# That will mount the created development_something into the container in 'volume' mode, keep everything inside persistent
+# The mounted volume is owned by root. Once inside the container, need to do allow give ownership to user 'dev' :
+#     chown -R dev:dev /home/dev/development
 #
 # Start/stop the container
 #     docker container start devbox -i
@@ -32,7 +46,8 @@ RUN apt-get update ;                                             \
     apt-get install -y nodejs; npm install -g npm@7.4.0 ;        \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - ;                             \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list ; \
-    apt-get update ; apt-get install -y yarn ;
+    apt-get update ; apt-get install -y yarn ;\
+    update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100 ;
 
 # TODO build/install latest cmake
 
@@ -47,7 +62,7 @@ RUN python3 -m pip install --upgrade pip ; \
     mkdocs pymdown-extensions plantuml_markdown
 
 # Install nodejs's packages
-RUN npm install -g mocha cheerio truffle web3 ganache-cli
+RUN npm install -g truffle web3 ganache-cli mocha cheerio
 
 
 # Setup sudoer user 'dev:dev'
