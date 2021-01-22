@@ -6,7 +6,7 @@ LABEL maintainer=chithanhnguyen.math@gmail.com
 #    - setup non root user 'dev'
 #
 # To build the image
-#     docker build -t ctn:dev -f devbox.dockerfile /path/to/this/dir
+#     docker build -t ctn:dev -f /path/to/this/dir/devbox.dockerfile /path/to/this/dir
 #
 # To run the container mounting readonly local .ssh directory to use local ssh keys :
 #     docker container run --name devbox --mount type=bind,source="/path/to/home/dir/.ssh",target=/home/dev/.ssh,readonly -it ctn:dev
@@ -46,7 +46,8 @@ RUN apt-get update ;                                             \
     apt-get install -y nodejs; npm install -g npm@7.4.0 ;        \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - ;                             \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list ; \
-    apt-get update ; apt-get install -y yarn ;\
+    apt-get update ; apt-get install -y yarn ;                                   \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3 100  ; \
     update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100 ;
 
 # TODO build/install latest cmake
@@ -59,10 +60,13 @@ RUN python3 -m pip install --upgrade pip ; \
     matplotlib graphviz     \
     py-solc web3 protobuf   \
     jsonschema              \
-    mkdocs pymdown-extensions plantuml_markdown
+    mkdocs pymdown-extensions plantuml_markdown ;
 
 # Install nodejs's packages
-RUN npm install -g truffle web3 ganache-cli mocha cheerio
+RUN npm install -g                                     \
+    truffle web3 ganache-cli mocha cheerio @babel/core \
+    @truffle/contract @truffle/hdwallet-provider       \
+    @uniswap/v2-core @uniswap/v2-periphery ;
 
 
 # Setup sudoer user 'dev:dev'
@@ -73,6 +77,7 @@ RUN useradd -m dev -d /home/dev -p $(openssl passwd dev); usermod -aG sudo dev ;
     echo '#' >> home/dev/.bashrc ;                                               \
     echo '#' >> home/dev/.bashrc ;                                               \
     echo 'alias python=/usr/bin/python3' >> home/dev/.bashrc ;                   \
+    echo 'export NODE_PATH=/usr/lib/node_modules' >> home/dev/.bashrc ;          \
     echo 'export PATH=$PATH:/usr/local/go/bin' >> home/dev/.bashrc ;
 
 ## User setup #######################################################
