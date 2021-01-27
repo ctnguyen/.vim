@@ -42,8 +42,8 @@ RUN apt-get update ;                                             \
     wget https://golang.org/dl/go1.15.6.linux-amd64.tar.gz ;     \
     tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz ;         \
     rm go1.15.6.linux-amd64.tar.gz ;                             \
-    curl -sL https://deb.nodesource.com/setup_15.x | bash -;     \
-    apt-get install -y nodejs; npm install -g npm@7.4.0 ;        \
+    curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh ;      \
+    bash nodesource_setup.sh ; apt-get install nodejs ; rm nodesource_setup.sh ; \
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - ;                             \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list ; \
     apt-get update ; apt-get install -y yarn ;                                   \
@@ -63,10 +63,10 @@ RUN python3 -m pip install --upgrade pip ; \
     mkdocs pymdown-extensions plantuml_markdown ;
 
 # Install nodejs's packages
-RUN npm install -g                                     \
-    truffle web3 ganache-cli mocha cheerio @babel/core \
-    @truffle/contract @truffle/hdwallet-provider       \
-    @uniswap/v2-core @uniswap/v2-periphery ;
+RUN npm install -g                                  \
+    cheerio solc@0.6.0 truffle@nodeLTS ganache-cli ;
+# TODO @truffle/hdwallet-provider @truffle/contract
+
 
 
 # Setup sudoer user 'dev:dev'
