@@ -35,17 +35,15 @@ LABEL maintainer=chithanhnguyen.math@gmail.com
 ## System setup ######################################################
 
 # Install Ubuntu's packages and utilities #########################
-RUN apt-get update ; apt-get install -y apt-utils curl ;                         \
-    curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh ;      \
-    bash nodesource_setup.sh ; rm nodesource_setup.sh ;                          \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends    \
-    sudo openssh-client wget lsof net-tools                                      \
-    vim git build-essential python3 python3-pip python3-dev nodejs yarn;         \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3 100  ; \
-    update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100 ;      \
+RUN apt-get update ; apt-get install -y apt-utils curl ;                      \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    sudo openssh-client wget lsof net-tools                                   \
+    vim git build-essential python3 python3-pip python3-dev yarn;             \
     wget https://golang.org/dl/go1.15.6.linux-amd64.tar.gz ; \
     tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz ;     \
-    rm go1.15.6.linux-amd64.tar.gz ;
+    rm go1.15.6.linux-amd64.tar.gz ;                         \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3 100 ;\
+    update-alternatives --install /usr/bin/editor editor /usr/bin/vim 100 ;
 
 # TODO build/install latest cmake
 
@@ -53,30 +51,32 @@ RUN apt-get update ; apt-get install -y apt-utils curl ;                        
 RUN python3 -m pip install --upgrade pip ; \
     python3 -m pip install                 \
     pytest requests                        \
-    numpy scipy                            \
-    matplotlib graphviz                    \
-    py-solc web3 protobuf                  \
-    jsonschema                             \
+    numpy scipy matplotlib graphviz        \
+    py-solc web3 protobuf jsonschema       \
     mkdocs pymdown-extensions plantuml_markdown ;
 
-# Install nodejs's packages
-RUN npm install -g cheerio solc@0.6.0 ganache-cli ;                  \
-    npm install -g --unsafe-perm=true --allow-root truffle@nodeLTS ;
-# TODO @truffle/hdwallet-provider @truffle/contract
-
 # Setup sudoer user 'duser:duser'
-RUN useradd -m duser -d /home/duser -p $(openssl passwd duser); usermod -aG sudo duser ; \
-    mkdir -p /home/duser/.ssh ;                                                          \
-    mkdir -p /home/duser/src ; mkdir -p /home/duser/build ; mkdir -p /home/duser/bin ;   \
-    echo '#' >> home/duser/.bashrc ;                                                     \
-    echo '#' >> home/duser/.bashrc ;                                                     \
-    echo 'export NODE_PATH=/usr/lib/node_modules' >> home/duser/.bashrc ;                \
-    echo 'export PATH=$PATH:/usr/local/go/bin' >> home/duser/.bashrc ;                   \
-    chown -R duser:duser /home/duser ;
+RUN useradd -m duser -d /home/duser -p $(openssl passwd duser); usermod -aG sudo duser ;
 
 ## User setup #######################################################
 USER duser
 WORKDIR /home/duser
+
+# Install node through nvm. It's recommended to install as specific user
+ARG NVM_VERSION=0.35.3
+ARG NODE_VERSION=14.16.0
+ENV PATH $PATH:/home/duser/.nvm/versions/node/v$NODE_VERSION/bin
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v$NVM_VERSION/install.sh | bash; \
+    /bin/bash -c "source /home/duser/.nvm/nvm.sh ; nvm install v$NODE_VERSION" ;     \
+    npm install -g --unsafe-perm=true --allow-root truffle@5.2.0 ;                   \
+    npm install -g solc@0.8.1 ganache-cli mocha cheerio;
+
+RUN mkdir -p /home/duser/.ssh ; \
+    echo "export NODE_PATH=/home/duser/.nvm/versions/node/v$NODE_VERSION/lib/node_modules" >> /home/duser/.bashrc ; \
+    echo "export GOROOT="/usr/local/go/" >> /home/duser/.bashrc ;                                                   \
+    echo "export PATH=$PATH:$GOROOT/bin:$($GOROOT/bin/go env GOPATH)/bin" >> /home/duser/.bashrc ;                  \
+    echo "export PS1=\"\\u@docker:\\\$PWD \\\$>\"" >> /home/duser/.bashrc;
+
 # Use my vim configuration
 RUN git clone https://github.com/ctnguyen/.vim.git ; rm -fR .vim/.git .vim/.gitignore ; \
     git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q ;   \
@@ -98,4 +98,4 @@ RUN git clone https://github.com/ctnguyen/.vim.git ; rm -fR .vim/.git .vim/.giti
 
 
 ## Setup vim in one line
-# git clone https://github.com/ctnguyen/.vim.git ; rm -fR .vim/.git .vim/.gitignore ; git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q ; git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q ; git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/vim-go/doc" -c q ; git clone https://github.com/puremourning/vimspector ~/.vim/pack/vimspector/opt/vimspector ; python3 ~/.vim/pack/vimspector/opt/vimspector/install_gadget.py --enable-python --force-enable-node ; git clone --depth=1 https://github.com/bfrg/vim-cpp-modern ~/.vim/pack/git-plugins/start ; rm ~/.vim/pack/git-plugins/start/README.md ; rm -fR ~/.vim/pack/git-plugins/start/.git ; git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript ; curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ; git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install ; git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim ; vim  -c "PlugInstall" -c q -c q ;
+# cd $HOME; git clone https://github.com/ctnguyen/.vim.git ; rm -fR .vim/.git .vim/.gitignore ; git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree ; vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q ; git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/lightline/doc" -c q ; git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go ; vim -u NONE -c "helptags ~/.vim/pack/plugins/start/vim-go/doc" -c q ; git clone https://github.com/puremourning/vimspector ~/.vim/pack/vimspector/opt/vimspector ; python3 ~/.vim/pack/vimspector/opt/vimspector/install_gadget.py --enable-python --force-enable-node ; git clone --depth=1 https://github.com/bfrg/vim-cpp-modern ~/.vim/pack/git-plugins/start ; rm ~/.vim/pack/git-plugins/start/README.md ; rm -fR ~/.vim/pack/git-plugins/start/.git ; git clone https://github.com/pangloss/vim-javascript.git ~/.vim/pack/vim-javascript/start/vim-javascript ; curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim ; git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf ; ~/.fzf/install ; git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim ; vim  -c "PlugInstall" -c q -c q ;
