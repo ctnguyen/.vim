@@ -65,16 +65,17 @@ WORKDIR /home/duser
 # Install node through nvm. It's recommended to install as specific user
 ARG NVM_VERSION=0.35.3
 ARG NODE_VERSION=14.16.0
+ENV NODE_PATH /home/duser/.nvm/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH $PATH:/home/duser/.nvm/versions/node/v$NODE_VERSION/bin
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v$NVM_VERSION/install.sh | bash; \
     /bin/bash -c "source /home/duser/.nvm/nvm.sh ; nvm install v$NODE_VERSION" ;     \
     npm install -g --unsafe-perm=true --allow-root truffle@5.2.0 ;                   \
     npm install -g solc@0.8.1 ganache-cli mocha cheerio;
 
+
 RUN mkdir -p /home/duser/.ssh ; \
-    echo "export NODE_PATH=/home/duser/.nvm/versions/node/v$NODE_VERSION/lib/node_modules" >> /home/duser/.bashrc ; \
-    echo "export GOROOT="/usr/local/go/" >> /home/duser/.bashrc ;                                                   \
-    echo "export PATH=$PATH:$GOROOT/bin:$($GOROOT/bin/go env GOPATH)/bin" >> /home/duser/.bashrc ;                  \
+    echo "export GOROOT=/usr/local/go/" >> /home/duser/.bashrc ;                                   \
+    echo "export PATH=$PATH:$GOROOT/bin:$($GOROOT/bin/go env GOPATH)/bin" >> /home/duser/.bashrc ; \
     echo "export PS1=\"\\u@docker:\\\$PWD \\\$>\"" >> /home/duser/.bashrc;
 
 # Use my vim configuration
