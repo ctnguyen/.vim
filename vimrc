@@ -183,6 +183,7 @@ set laststatus=2
 " Disable vim-go auto modifying text
 let g:go_fmt_autosave = 0
 let g:go_mod_fmt_autosave = 0
+let g:go_fmt_command = "goimports"
 " Setup the widgets locations
 let g:go_debug_windows = {
         \ 'vars':       'rightbelow 30vnew',
