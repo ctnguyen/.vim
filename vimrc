@@ -27,13 +27,16 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""
 " Build vim from source
 """"""""""""""""""""""""""""""""""""""""""""""""
+" Presetup Ubuntu
+"     sudo apt install -y libxt-dev python3-pip python3-dev libpython3-dev libncurses-dev curl
+"
 " Setup python
-"     python -m pip install pytest mkdocs pymdown-extensions plantuml_markdown py-solc web3
+"     python -m pip install pytest mkdocs pymdown-extensions plantuml_markdown
 " Clone the source
-"     git clone https://github.com/vim/vim.git ; cd vim
+"     git clone -b v8.2.5172 https://github.com/vim/vim.git ; cd vim
 " On Ubuntu
 "     ./configure --with-features=huge --enable-cscope --enable-multibyte --enable-python3interp --with-python3-config-dir=$(python3-config --configdir) --enable-fail-if-missing --prefix=/abs/path/to/devtool/vim-8.2
-"     make install
+"     make -j8 install
 "
 " On Windows
 "     TODO
@@ -64,6 +67,9 @@ endfunction
 
 " auto reload vimrc
 autocmd! bufwritepost .vimrc source ~/.vim/vimrc
+
+" https://vim.fandom.com/wiki/Accessing_the_system_clipboard
+" set clipboard=unnamed
 
 if has('win32')
     set grepprg=ack
