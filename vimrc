@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Author Chi Thanh Nguyen
 "        chithanhnguyen.math@gmail.com
 "
@@ -33,9 +33,9 @@ endif
 " Setup python
 "     python -m pip install pytest mkdocs pymdown-extensions plantuml_markdown
 " Clone the source
-"     git clone -b v8.2.5172 https://github.com/vim/vim.git ; cd vim
+"     git clone -b v9.0.1670 https://github.com/vim/vim.git ; cd vim
 " On Ubuntu
-"     ./configure --with-features=huge --enable-cscope --enable-multibyte --enable-python3interp --with-python3-config-dir=$(python3-config --configdir) --enable-fail-if-missing --prefix=/abs/path/to/devtool/vim-8.2
+"     ./configure --with-features=huge --enable-cscope --enable-multibyte --enable-python3interp --with-python3-config-dir=$(python3-config --configdir) --enable-fail-if-missing --prefix=/abs/path/to/devtool/vim-9.0
 "     make -j8 install
 "
 " On Windows
